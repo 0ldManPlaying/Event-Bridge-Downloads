@@ -6,6 +6,9 @@ download the published files.
 
 ## Downloads
 
+Latest stable firmware: **v1.5.0**, released on 9 October 2026.
+See the [v1.5.0 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.0).
+
 - [Latest release and release information](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest)
 - [Windows x64 discovery tool ZIP](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover-Windows-x64.zip)
 - [Windows x64 discovery EXE](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover.exe)
@@ -53,6 +56,40 @@ rollback is available when the previous build is compatible.
 
 Proprietary IDIS SDK headers, libraries and relay executables are not included.
 The release's `SHA256SUMS` asset lists the download checksums.
+
+## v1.5.0: speaker announcements and MOXA digital I/O
+
+- IDIS network speaker destination for prerecorded messages, with file selection,
+  volume, authentication, bounded playback and an audible test button.
+- Staged loitering announcements with three configurable dwell thresholds,
+  initially 60, 120 and 300 seconds. Optional scheduling and a stage-3 HTTP
+  notification are available. Departure, disarm and source loss cancel pending
+  announcements; repeated events do not restart the sequence.
+- MOXA ioLogik E1200 digital inputs as event sources and digital outputs/relays
+  as action destinations. Inputs work in Rules and Flows. A timed output action
+  automatically attempts OFF after its configured duration or cancellation.
+- MOXA output mode validation, targeted writes and readback confirmation.
+  Connection tests read the output without switching it.
+- Editing and deleting older saved flows, including empty test flows, with
+  recovery of missing editor metadata while preserving parameters and connections.
+- New controls and input labels in Dutch, English, German, French and Spanish.
+
+Configuration, accounts, history and the installed NVR relay are preserved.
+There is no database schema or SDK migration. Older firmware cannot operate the
+new plugin/node types after rollback, although their settings remain stored.
+
+Basic IDIS speaker bell playback has been confirmed audible. The full recorded
+message sequence requires commissioning with the actual camera/NVR and speaker;
+it monitors camera/zone alarm state rather than tracking an individual person.
+MOXA support is simulation-tested; a real module has not yet been tested. Only
+digital DI and DO/relay modes are supported, excluding analog, counter and pulse
+generator modes. Physical output OFF cannot be guaranteed during a network or
+module failure.
+
+## v1.4.1: consistent logos on every PC
+
+Login and sidebar logos use vector outlines, preserving their appearance on PCs
+without the original font. No logo font installation or download is required.
 
 ## Changes included in v1.4.0, from v1.3.0
 
