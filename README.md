@@ -6,8 +6,8 @@ download the published files.
 
 ## Downloads
 
-Latest stable firmware: **v1.5.0**, released on 9 October 2026.
-See the [v1.5.0 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.0).
+Latest stable firmware: **v1.5.1**, released on 10 October 2026.
+See the [v1.5.1 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.1).
 
 - [Latest release and release information](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest)
 - [Windows x64 discovery tool ZIP](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover-Windows-x64.zip)
@@ -56,6 +56,20 @@ rollback is available when the previous build is compatible.
 
 Proprietary IDIS SDK headers, libraries and relay executables are not included.
 The release's `SHA256SUMS` asset lists the download checksums.
+
+## v1.5.1: NVR camera discovery and manual reconnect
+
+Settings > NVR settings > NVR events now provides Reconnect in all five
+languages. It refreshes the managed NVR session and camera list, retaining
+saved configuration, unsaved form entries, recent events and known camera names.
+Retries require login and are limited to one per ten seconds. A refused NVR
+login remains blocked until its address or credentials change.
+
+Empty camera lists explain the connection requirement. An incompatible legacy
+relay reports a specific diagnostic. Discovery and reconnection were verified
+with a real NVR and 32 cameras. The firmware preserves the installed relay;
+devices with an original pre-managed relay need a one-time operator-assisted
+relay upgrade. There is no database schema or SDK migration.
 
 ## v1.5.0: speaker announcements and MOXA digital I/O
 
