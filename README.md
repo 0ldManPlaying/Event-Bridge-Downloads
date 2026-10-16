@@ -6,8 +6,8 @@ download the published files.
 
 ## Downloads
 
-Latest stable firmware: **v1.5.1**, released on 10 October 2026.
-See the [v1.5.1 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.1).
+Latest stable firmware: **v1.5.2**, released on 16 October 2026.
+See the [v1.5.2 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.2).
 
 - [Latest release and release information](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest)
 - [Windows x64 discovery tool ZIP](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover-Windows-x64.zip)
@@ -56,6 +56,35 @@ rollback is available when the previous build is compatible.
 
 Proprietary IDIS SDK headers, libraries and relay executables are not included.
 The release's `SHA256SUMS` asset lists the download checksums.
+
+## v1.5.2: NVR diagnostics, WebRelay-Quad and Home Assistant
+
+- The NVR connection test uses read-only requests rather than an artificial alarm
+  on channel 0. Recorders that do not support this HTTP check show a reachability
+  warning and, when available, confirmation of the matching NVR event connection.
+  This does not verify network-alarm delivery. Authentication and server failures
+  remain errors.
+- Manual tests and health checks honor the configured timeout, from 1 to 300
+  seconds, with a default of 15 seconds. Real timeouts have a separate message.
+- A dedicated WebRelay-Quad preset supports the original ControlByWeb
+  X-WR-4R3-I/E, including X-WR-4R3-E. Select relay 1 to 4 and a hardware-timed
+  pulse of 0.1 to 3,600 seconds in Devices, then use it in Rules or Flows.
+  Connection tests only read status; pulse commands are not automatically retried.
+- Optional read-only Home Assistant MQTT discovery automatically adds selected
+  or all cameras from one NVR, including camera names, motion sensors, events
+  and shared bridge diagnostics. The integration is disabled by default.
+- New controls and diagnostics are available in all five interface languages.
+
+Existing configuration, users, history, TLS files and the installed NVR relay are
+preserved. There is no database schema or SDK migration. Rollback retains the new
+settings, but older builds cannot operate the new integration or flow node types.
+
+Home Assistant requires a separate host and MQTT broker. Real 32-camera discovery,
+motion events and reconnect recovery were tested; permanent broker setup and
+real motion-stop commissioning remain site-specific. Snapshots, video, voice
+control and direct Apple Home, Google Home or Alexa integration are not included.
+WebRelay-Quad is simulation-tested and requires commissioning on the actual
+module, including authentication, pulse timing and electrical operation.
 
 ## v1.5.1: NVR camera discovery and manual reconnect
 
