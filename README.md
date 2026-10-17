@@ -6,8 +6,8 @@ download the published files.
 
 ## Downloads
 
-Latest stable firmware: **v1.5.2**, released on 16 October 2026.
-See the [v1.5.2 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.2).
+Latest stable firmware: **v1.5.3**, released on 17 October 2026.
+See the [v1.5.3 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.3).
 
 - [Latest release and release information](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest)
 - [Windows x64 discovery tool ZIP](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover-Windows-x64.zip)
@@ -45,8 +45,8 @@ download firmware non-interactively, and `--json` for a local-only device invent
 
 The `event-bridge-firmware-vX.Y.Z.zip` asset is software-only firmware for the
 Luckfox ARMv7 device. It updates the bridge application and web interface while
-preserving configuration, accounts, history, TLS files and the installed NVR
-relay. It is not an operating-system image or a fresh-device installer.
+preserving configuration, accounts, TLS files and the installed NVR relay.
+Event history follows the configured age policy and the 50,000-event limit. It is not an operating-system image or a fresh-device installer.
 
 Version management requires v1.3.1 or newer and an installed firmware helper.
 Older devices need an initial operator-assisted upgrade. The device checks
@@ -56,6 +56,27 @@ rollback is available when the previous build is compatible.
 
 Proprietary IDIS SDK headers, libraries and relay executables are not included.
 The release's `SHA256SUMS` asset lists the download checksums.
+
+## v1.5.3: bounded event history and manual clearing
+
+- Event history is capped at 50,000 records. New events replace the oldest;
+  configured age retention still applies, with a default of 30 days.
+- Event log > Clear event log provides an explicit confirmation in all five
+  languages. Clearing preserves settings, active alarms and events received
+  after the confirmation was opened. The action is irreversible.
+- The dashboard and Event log show the real storage usage and limit.
+- Application text and JSON logs rotate at 5 MiB, with two archives per log.
+  Oversized older files are trimmed, and individual stored records are bounded.
+
+On first startup, history above 50,000 and oversized application logs are trimmed.
+Export required history before upgrading. CSV export includes only currently
+loaded, filtered events. A software rollback does not restore removed history
+or log lines, so keep a separate recovery copy when required. SQLite reuses freed
+pages; clearing does not immediately compact the database file.
+
+Configuration, accounts, TLS files and the installed NVR relay are preserved.
+There is no database schema or SDK migration. External relay/service logs follow
+their host's logging policy. Existing alarm processing and outputs are unchanged.
 
 ## v1.5.2: NVR diagnostics, WebRelay-Quad and Home Assistant
 
