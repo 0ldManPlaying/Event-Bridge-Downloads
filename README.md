@@ -6,8 +6,8 @@ download the published files.
 
 ## Downloads
 
-Latest stable firmware: **v1.5.3**, released on 17 October 2026.
-See the [v1.5.3 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.3).
+Latest stable firmware: **v1.5.4**, released on 20 October 2026.
+See the [v1.5.4 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.4).
 
 - [Latest release and release information](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest)
 - [Windows x64 discovery tool ZIP](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover-Windows-x64.zip)
@@ -56,6 +56,37 @@ rollback is available when the previous build is compatible.
 
 Proprietary IDIS SDK headers, libraries and relay executables are not included.
 The release's `SHA256SUMS` asset lists the download checksums.
+
+## v1.5.4: verified NVR alarm output and clearer diagnostics
+
+- NVR event input, read-only HTTP reachability and network-alarm output have
+  separate status information. A recorder rejecting the read-only check with
+  HTTP 400 no longer causes DEGRADED when actual alarm commands are accepted.
+  Output errors remain visible even when incoming NVR events are connected.
+- Settings and NVR destinations provide an explicit ON/OFF network-alarm test.
+  Choose a configured test slot, disarm the bridge, review its linked actions
+  and acknowledge the test. The bridge attempts OFF even if ON fails or the
+  browser disconnects. Normal health checks never send alarms.
+- Valid API acceptance and operator-confirmed receipt in the NVR are distinct.
+  Only confirm receipt after checking the NVR event search or alert window.
+- New NVR configurations use the alarm number displayed on the recorder:
+  alarm 17 maps to API channel 16. Existing configurations and older backups
+  retain compatibility numbering, preserving their physical alarm targets.
+  Review associated rules and flows before changing the numbering mode.
+- Alarm delivery validates the JSON acknowledgement, retains Digest
+  authentication and rejects redirects, login HTML and incomplete responses.
+  Authentication refusal suspends automatic requests through that client until
+  its connection settings are saved again.
+- Firmware downgrade and rollback checks block versions that cannot preserve
+  the selected NVR numbering. Existing configuration, accounts, event history,
+  TLS files, the installed relay and database schema 13 are preserved.
+- New controls, diagnostics and confirmation messages support Dutch, English,
+  German, French and Spanish.
+
+Status observations are held in memory and reset after a bridge restart.
+An accepted API command is not automatic proof that an NVR action occurred.
+Use the HTTP or HTTPS protocol actually enabled on the recorder's web service.
+No SDK migration or change to existing non-NVR output types is required.
 
 ## v1.5.3: bounded event history and manual clearing
 
