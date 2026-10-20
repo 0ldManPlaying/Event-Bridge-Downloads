@@ -6,8 +6,8 @@ download the published files.
 
 ## Downloads
 
-Latest stable firmware: **v1.5.4**, released on 20 October 2026.
-See the [v1.5.4 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.4).
+Latest stable firmware: **v1.5.5**, released on 20 October 2026.
+See the [v1.5.5 release notes and downloads](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/tag/v1.5.5).
 
 - [Latest release and release information](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest)
 - [Windows x64 discovery tool ZIP](https://github.com/0ldManPlaying/Event-Bridge-Downloads/releases/latest/download/IDIS-Discover-Windows-x64.zip)
@@ -56,6 +56,30 @@ rollback is available when the previous build is compatible.
 
 Proprietary IDIS SDK headers, libraries and relay executables are not included.
 The release's `SHA256SUMS` asset lists the download checksums.
+
+## v1.5.5: clearer NVR feedback and a concise dashboard
+
+- Settings now labels the read-only connection button **Test reachability**.
+  When an alarm command was previously accepted by that exact NVR address and
+  HTTP login, the result shows that earlier acceptance in green with its time.
+  An unsupported read-only HTTP check no longer contradicts this evidence.
+- An untested connection explains how to run **Test network alarm**. Current
+  authentication, connection and output failures remain visible and take
+  priority over an older success. A read-only test never sends an alarm or
+  claims that a new alarm was received by the recorder.
+- Editing connection fields, saving settings or completing the default NVR's
+  manual alarm test clears stale feedback. Late responses for an earlier edit
+  cannot overwrite the current form. Separate NVR destinations keep their own
+  alarm-delivery evidence.
+- The dashboard NVR card shows only its status label and color. Detailed input,
+  output and HTTP diagnostics remain available in NVR settings.
+- All new feedback is available in Dutch, English, German, French and Spanish.
+
+Configuration, accounts, rules, flows, event history, TLS files and the installed
+NVR relay are preserved. Database schema 13, SDK pins, alarm routing and existing
+NVR numbering compatibility are unchanged. Status observations reset after a
+bridge restart; earlier API acceptance is distinct from operator-confirmed
+receipt on the NVR.
 
 ## v1.5.4: verified NVR alarm output and clearer diagnostics
 
