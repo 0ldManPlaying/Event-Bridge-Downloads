@@ -43,6 +43,22 @@ download firmware non-interactively, and `--json` for a local-only device invent
 
 ## Firmware updates
 
+### New devices and first installation
+
+A stock board must first be provisioned by an authorized installer. Check its
+existing operating system before choosing the Ubuntu or factory Buildroot route;
+reflashing is not automatically required. A GitHub firmware ZIP cannot be flashed
+with Rockchip tools or used as a complete first-installation kit.
+
+Contact your supplier for the current provisioning instructions and required
+private components. Do not use the old installer from provisioning archives
+v1.5.5 or earlier: its master-image preparation can erase device state and identity.
+The current operator procedure preserves SSH identity and separates ordinary
+installation from destructive master-image preparation. Existing bridges should
+use Version management instead of fresh-device provisioning.
+
+### Updating an installed bridge
+
 The `event-bridge-firmware-vX.Y.Z.zip` asset is software-only firmware for the
 Luckfox ARMv7 device. It updates the bridge application and web interface while
 preserving configuration, accounts, TLS files and the installed NVR relay.
